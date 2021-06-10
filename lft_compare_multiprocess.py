@@ -8,6 +8,9 @@ import multiprocessing
 import configparser
 import lft_comparer
 
+# this is an attempt to process many number of files at once using python multiprocess
+# this is not tested might be bugs
+
 if __name__ == "__main__":  # confirms that the code is under main function
     try:
         config_object = configparser.ConfigParser()
@@ -33,7 +36,8 @@ if __name__ == "__main__":  # confirms that the code is under main function
             new_sheets = new_xls.sheet_names  # getting list of sheet names
             for sheetName in new_sheets:
                 # new_ws = new_wb[sheetName]
-                proc = Process(target=lft_comparer.start_compare,args=(file_path,sheetName,lft_comparer.wb_dict,return_dict))
+                proc = Process(target=lft_comparer.start_compare, args=(
+                    file_path, sheetName, lft_comparer.wb_dict, return_dict))
                 procs.append(proc)
                 proc.start()
 
@@ -41,16 +45,17 @@ if __name__ == "__main__":  # confirms that the code is under main function
         for proc in procs:
             proc.join()
 
-        for x,y in lft_comparer.wb_dict.items():
+        for x, y in lft_comparer.wb_dict.items():
             y.save('./' + x + '_highlighted.xlsx')
 
         if return_dict:
-            for filename,wb in return_dict.items():
+            for filename, wb in return_dict.items():
                 wb.save('./' + filename + '_highlighted.xlsx')
             print(return_dict.values())
         lft_comparer.save_workbook_from()
         now = datetime.now()
-        print('completed for all files ' + str(now.hour) + ':' + str(now.minute))
+        print('completed for all files ' +
+              str(now.hour) + ':' + str(now.minute))
         os.system('pause')
     except Exception as e:
         print('oops! error occurred.')
