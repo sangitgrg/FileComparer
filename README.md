@@ -4,16 +4,16 @@ This program uses pandas and numpy to compare two big excel files and create out
 gener_compare.py is the main script for comparing.
 Ignore other files, they are under development.
 
-# config ini file structure
+## _config ini file structure_
 
 [PathConfig]
-newFolderPath = D:/USERDATA/NewFolder # keep excel file with new data
-oldFolderPath = D:/USERDATA/OldFolder # keep excel file with old data
+- newFolderPath = D:/USERDATA/NewFolder  --> _keep excel file with new data_
+- oldFolderPath = D:/USERDATA/OldFolder  --> _keep excel file with old data_
 
 [ExcelConfig]
-newExcelsheetName='Sheet1' # sheet name for your excel file
-oldExcelsheetName='Sheet1'
-uniqueKey='Tag No' # this unique key will be used as a base for comparing between two excel files
+- newExcelsheetName='Sheet1' --> _sheet name for your excel file_
+- oldExcelsheetName='Sheet1'
+- uniqueKey='Tag No'  --> _this unique key will be used as a base for comparing between two excel files_
 
 # Limitation
 
